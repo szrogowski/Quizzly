@@ -13,6 +13,7 @@ import Home from '../components/Home'
 import QuizPreview from '../components/QuizPreview'
 import MyAccount from '../components/MyAccount'
 import CreateQuiz from '../components/CreateQuiz'
+import QuizCreator from '../components/QuizCreator'
 
 function App() {
   const [user,setUser] = useState(null);
@@ -41,8 +42,8 @@ function App() {
       <Header user={user} setUser={setUser}/> 
     
        <Routes>
+          <Route path='/createquiz' element={<QuizCreator/>}/>
           <Route path='/' element={<Welcome/>}/>
-          <Route path='/createquiz' element={<CreateQuiz user={user}/>}/>
           <Route path='/myaccount' element={<MyAccount user={user} error={error}/>}/>
           <Route path='/quiz' element={<QuizLayout/>}/>
           <Route path='/home' element={<Home user={user} error={error}/>}/>
