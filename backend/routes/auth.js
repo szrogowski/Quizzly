@@ -78,4 +78,11 @@ const generateToken = (id)=> {
     return jwt.sign({id},process.env.JWT_SECRET, {expiresIn: "30d"})
 }
 
+// get quiz
+
+// router.get("quiz",async (req,res)=> {
+//     res.status(200).json(req.quiz)
+// })
+
+
 export default router;

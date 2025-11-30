@@ -16,7 +16,12 @@ function Header({user,setUser}) {
       
       <header className='flex col justify-between'>
             <div className='flex align-items-center'>
-              <h1 className='site-name'>Quizzly</h1>
+              {user? (
+                <h1 className='site-name'><Link to='/home'>Quizzly</Link></h1>
+              ):(
+                <h1 className='site-name'><Link to='/'>Quizzly</Link></h1>
+              )}
+              
             </div>
           {/* if you are  not logged in  */}
           {user? (

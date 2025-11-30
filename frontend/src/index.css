@@ -38,6 +38,10 @@ body {
   font-weight: 400;
   margin-left: 10px;
 }
+.site-name a{
+  text-decoration: none;
+  color: #ff6b6b;
+}
 .header-text {
   font-weight: 100;
 }
