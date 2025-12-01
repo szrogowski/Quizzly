@@ -305,6 +305,10 @@ body {
   font-weight: 300;
   transition: background-color 0.2s ease;
 }
+.nav-btn:disabled{
+  background-color: #e85b5b;
+  opacity: 30%;
+}
 
 .nav-btn:hover {
   background-color: #e85b5b;

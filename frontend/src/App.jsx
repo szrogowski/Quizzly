@@ -4,7 +4,7 @@ import Welcome from '../components/Welcome'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import QuizLayout from '../components/Quiz'
+import Quiz from '../components/Quiz'
 import UserNavbar from '../components/UserNavbar'
 import QuizGroup from '../components/QuizGroup'
 import axios from 'axios';
@@ -14,7 +14,7 @@ import QuizPreview from '../components/QuizPreview'
 import MyAccount from '../components/MyAccount'
 import CreateQuiz from '../components/CreateQuiz'
 import QuizCreator from '../components/QuizCreator'
-
+import QuizResult from '../components/QuizResult'
 function App() {
   const [user,setUser] = useState(null);
   const [error,setError] = useState("");
@@ -45,7 +45,9 @@ function App() {
           <Route path='/createquiz' element={<QuizCreator/>}/>
           <Route path='/' element={<Welcome/>}/>
           <Route path='/myaccount' element={<MyAccount user={user} error={error}/>}/>
-          <Route path='/quiz' element={<QuizLayout/>}/>
+          {/* <Route path='/quiz' element={<QuizLayout/>}/> */}
+          <Route path="/quiz/:id" element={<Quiz  />} />
+          <Route path="/quiz/:id/result" element={<QuizResult/>}/>
           <Route path='/home' element={<Home user={user} error={error}/>}/>
           <Route path='/login' element={<Login setUser={setUser}/>}/>
           <Route path='/register' element={<Register setUser={setUser}/>}/>

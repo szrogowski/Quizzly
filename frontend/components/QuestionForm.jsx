@@ -44,7 +44,7 @@ export default function QuestionForm({ num,addQuestion, finishQuiz }) {
         type="text"
         placeholder="Write your question..."
         value={questionText}
-        required
+        required  
         onChange={(e) => setQuestionText(e.target.value)}
       />
 

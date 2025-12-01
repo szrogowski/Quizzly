@@ -1,77 +1,113 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+  import { useParams, useNavigate } from "react-router-dom";
 
-function QuizLayout() {
+function Quiz() {
+  const { id } = useParams();
+  //const navigate = useNavigate();
+
+  const [quiz, setQuiz] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [userAnswers, setUserAnswers] = useState({});
   const [progress, setProgress] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
-  // Timer progress animation
   useEffect(() => {
-    const duration = 15; // seconds
-    const interval = 100; // ms update speed
-    const totalSteps = (duration * 1000) / interval;
-    let step = 0;
+    axios
+      .get(`/api/quiz/${id}`)
+      .then((res) => setQuiz(res.data))
+      .catch((err) => console.log(err));
+  }, [id]);
 
-    const timer = setInterval(() => {
-      step++;
-      setProgress((step / totalSteps) * 100);
-      if (step >= totalSteps) clearInterval(timer);
-    }, interval);
+  if (!quiz) return <h2>Loading ...</h2>;
 
-    return () => clearInterval(timer);
-  }, []);
+  const q = quiz.questions[currentQuestion];
 
-  // Handle answer selection
-  const handleAnswerClick = (option) => {
-    setSelectedAnswer(option);
+  const handleAnswerClick = (answerIndex) => {
+    setUserAnswers({
+      ...userAnswers,
+      [currentQuestion]: answerIndex,
+    });
+  };
+
+  const handleNext = () => {
+    if (currentQuestion < quiz.questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    navigate(`/quiz/${id}/result`, { state: { quiz, userAnswers } });
   };
 
   return (
     <div className="quiz-wrapper">
       <div className="quiz-card">
+
+        {/* Header */}
         <div className="quiz-info">
-            <h2 className="quiz-title">General Knowledge Quiz</h2>
-        <p>
-            Question <span className="highlight">1</span> of 10
+          <h2 className="quiz-title">{quiz.name}</h2>
+          <p>
+            Question <span className="highlight">{currentQuestion + 1}</span> of{" "}
+            {quiz.questions.length}
           </p>
         </div>
-        {/* Timer progress bar */}
-        {/* <div className="quiz-timer-bar">
-          <div
-            className="quiz-timer-fill"
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>  */}
 
-        
-          
+        {/* Timer (optional) */}
+        {/* 
+        <div className="quiz-timer-bar">
+          <div className="quiz-timer-fill" style={{ width: `${progress}%` }}></div>
+        </div>
+        */}
 
+        {/* Current Question */}
         <div className="question-box">
-          <p className="question-text">
-            What is the capital city of France?
-          </p>
+          <p className="question-text">{q.text}</p>
         </div>
 
+        {/* Options */}
         <div className="options-grid">
-          {["Madrid", "Paris", "Rome", "Berlin"].map((option, index) => (
+          {q.answers.map((option, index) => (
             <button
               key={index}
               className={`option-btn ${
-                selectedAnswer === option ? "selected" : ""
+                userAnswers[currentQuestion] === index ? "selected" : ""
               }`}
-              onClick={() => handleAnswerClick(option)}
+              onClick={() => handleAnswerClick(index)}
             >
               {option}
             </button>
           ))}
         </div>
 
+        {/* Navigation */}
         <div className="quiz-controls">
-          <button className="nav-btn">Previous</button>
-          <button className="nav-btn">Next</button>
+          <button
+            className="nav-btn"
+            onClick={handlePrev}
+            disabled={currentQuestion === 0}
+          >
+            Previous
+          </button>
+
+          {currentQuestion < quiz.questions.length - 1 ? (
+            <button className="nav-btn" onClick={handleNext}>
+              Next
+            </button>
+          ) : (
+            <button className="nav-btn" onClick={handleSubmit}>
+              Submit
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default QuizLayout;
+export default Quiz;
