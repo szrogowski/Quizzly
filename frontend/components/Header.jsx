@@ -39,11 +39,12 @@ function Header({user,setUser}) {
               </div>
               <div className="dropdown">
               <p className='dropbtn'>Play</p>
+              
               <div className="dropdown-content">
                 <a href="">RANDOM QUIZ</a>
                 {/* <a href="">MEMORY CARDS</a>
                 <Link to='/createquiz'>QUIZ</Link> */}
-                
+                <Link to='/quiz/all'>All Quizzes</Link>
               </div>
               
               </div>

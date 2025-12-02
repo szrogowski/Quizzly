@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Quiz() {
   const { id } = useParams();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [quiz, setQuiz] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);

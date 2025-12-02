@@ -15,6 +15,7 @@ import MyAccount from '../components/MyAccount'
 import CreateQuiz from '../components/CreateQuiz'
 import QuizCreator from '../components/QuizCreator'
 import QuizResult from '../components/QuizResult'
+import QuizAll from '../components/QuizAll'
 function App() {
   const [user,setUser] = useState(null);
   const [error,setError] = useState("");
@@ -44,10 +45,12 @@ function App() {
        <Routes>
           <Route path='/createquiz' element={<QuizCreator/>}/>
           <Route path='/' element={<Welcome/>}/>
+          
           <Route path='/myaccount' element={<MyAccount user={user} error={error}/>}/>
           {/* <Route path='/quiz' element={<QuizLayout/>}/> */}
           <Route path="/quiz/:id" element={<Quiz  />} />
           <Route path="/quiz/:id/result" element={<QuizResult/>}/>
+          <Route path='/quiz/all' element={<QuizAll/>}/>
           <Route path='/home' element={<Home user={user} error={error}/>}/>
           <Route path='/login' element={<Login setUser={setUser}/>}/>
           <Route path='/register' element={<Register setUser={setUser}/>}/>

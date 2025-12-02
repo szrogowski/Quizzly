@@ -13,6 +13,15 @@ router.post("/create", async (req, res) => {
     res.status(500).json({ error: "Failed to create quiz" });
   }
 });
+router.get('/all', async (req,res) => {
+  try {
+    const quizzes = await Quiz.find()
+    if(quizzes.length=== 0) return res.status(404).json({error:"Quiz not found."})
+    return res.json(quizzes)
+  } catch (err) {
+    return res.status(500).json({message:"Server error" ,error: err})
+  }
+})
 
 router.get('/:id', async (req,res)=>{
   try {
@@ -25,5 +34,7 @@ router.get('/:id', async (req,res)=>{
   }
 })
 
+
+// fetching all quizzes for the website to display 
 
 export default router;
