@@ -3,8 +3,7 @@ export default function QuizInfoForm({ quizInfo, setQuizInfo, goNext }) {
     <>
    
      
-
-      
+    {/* {setQuizInfo({...quizInfo,username})} */}
     <div className="form-wrapper">
         <form className="quiz-form" >
           <h2>Create your quiz</h2>
@@ -16,6 +15,7 @@ export default function QuizInfoForm({ quizInfo, setQuizInfo, goNext }) {
             <option value="">Genre</option>
             <option value="">Geography</option>
           </select>
+          
         
           <button  onClick={goNext}>Next</button>
           

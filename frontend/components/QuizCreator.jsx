@@ -4,7 +4,7 @@ import QuestionForm from "./QuestionForm";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 export default function QuizCreator() {
-  const [quizInfo, setQuizInfo] = useState({ name: "", genre: "" });
+  const [quizInfo, setQuizInfo] = useState({ name: "", genre: "" ,username:""});
   const [questions, setQuestions] = useState([]);
   const [step, setStep] = useState("info"); // "info" | "question"
   const [num,setNum] = useState(1);

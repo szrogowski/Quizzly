@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import QuizPreview from './QuizPreview';
 
-function QuizAll() {
+function QuizRandom() {
   const [quizzes, setQuizzes] = useState(null);
+  const navigate = useNavigate();
 
-  const [search,setSearch] = useState("");
-  
-  const filteredQuizzes = (quizzes || []).filter(q =>
-    q.name?.toLowerCase().includes(search.toLowerCase())
-  );
 
   useEffect(() => {
     axios
@@ -17,20 +14,23 @@ function QuizAll() {
       .then((res) => setQuizzes(res.data))
       .catch((err) => console.log(err));
   }, []);
-
-  if (!quizzes) return <h2>Loading...</h2>;
-
+  
+  if (!quizzes) return <h2>Temporary unavailable, we're sorry ! :/</h2>;
+  const length = quizzes.length
+  
+  let random = Math.ceil(Math.random()*length)
+  const rand_id = (quizzes[random]._id)
+  const red=()=>{
+    navigate(`/quiz/${rand_id}`)
+  }
+  red();
   return (
     <div className='all-quizzes'>
-      <div className='search-bar'>
-      <span className=''>Search: </span>
-      <input type="text" name="" id="" onChange={(e)=>{setSearch(e.target.value)}}/>
-      </div>
       
       
       <ul>
         <div className='quiz-filter-res'>
-        {filteredQuizzes.map((q) => (
+        {quizzes.map((q) => (
           
             
           <QuizPreview id={q._id} title={q.name}/>
@@ -43,4 +43,4 @@ function QuizAll() {
   );
 }
 
-export default QuizAll;
+export default QuizRandom;

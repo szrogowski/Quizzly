@@ -41,15 +41,16 @@ function Header({user,setUser}) {
               <p className='dropbtn'>Play</p>
               
               <div className="dropdown-content">
-                <a href="">RANDOM QUIZ</a>
+                
+                <Link to='/quiz/random'>RANDOM QUIZ</Link>
                 {/* <a href="">MEMORY CARDS</a>
                 <Link to='/createquiz'>QUIZ</Link> */}
                 <Link to='/quiz/all'>All Quizzes</Link>
               </div>
               
               </div>
-              
-              <p><Link className='link-router' to='/myaccount'>My account</Link></p>
+              <p className='dropbtn'>Assignments</p>
+              <p><Link className='dropbtn' to='/myaccount'>My account</Link></p>
              
               <p className='link-router' onClick={handleLogout}><Link className='link-router' >LOGOUT</Link></p> 
               

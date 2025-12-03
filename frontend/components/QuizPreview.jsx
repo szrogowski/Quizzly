@@ -11,8 +11,10 @@ function QuizPreview({ id, title, description }) {
   return (
     <div className='quiz-preview-card' id={id}>
       <p>{title}</p>
-      <p>{description}</p>
-      <button onClick={handleClick}>Click</button>
+      <div className='flex justify-between'>
+        <p>{description}</p>
+        <button onClick={handleClick}>PLAY</button>
+      </div>
     </div>
   );
 }

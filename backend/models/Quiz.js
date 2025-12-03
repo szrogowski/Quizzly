@@ -9,6 +9,7 @@ const questionSchema = new mongoose.Schema({
 const quizSchema = new mongoose.Schema({
   name: { type: String, required: true },
   genre: { type: String},
+  username: {type:String},
   questions: [questionSchema]
 });
 
