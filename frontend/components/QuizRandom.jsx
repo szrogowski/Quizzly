@@ -15,7 +15,7 @@ function QuizRandom() {
       .catch((err) => console.log(err));
   }, []);
   
-  if (!quizzes) return <h2>Temporary unavailable, we're sorry ! :/</h2>;
+  if (!quizzes) return <span className="loader"></span>;
   const length = quizzes.length
   
   let random = Math.ceil(Math.random()*length)

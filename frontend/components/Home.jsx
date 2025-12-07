@@ -1,5 +1,4 @@
 import React from 'react'
-import QuizGroup from './QuizGroup'
 import UserAssignment from './ui-components/UserAssignment'
 function Home({user,error}) {
   if(!user) return null
@@ -29,8 +28,6 @@ function Home({user,error}) {
               <UserAssignment title={'Quiz about mathematics'} description={'DO ALGEBRA'}/>
               <UserAssignment title={'Retake History test'} description={'DO ALGEBRA'}/>
               <UserAssignment title={'Learn Polish using flash cards.'} description={'DO ALGEBRA'}/>
-             
-              
             </div>
           </div>
 

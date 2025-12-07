@@ -1,5 +1,4 @@
 import React from 'react'
-import QuizGroup from './QuizGroup'
 import Quiz from './QuizPreview'
 function MyAccount({user,error}) {
   if(!user) return null

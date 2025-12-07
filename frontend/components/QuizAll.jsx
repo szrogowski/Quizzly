@@ -18,7 +18,7 @@ function QuizAll() {
       .catch((err) => console.log(err));
   }, []);
 
-  if (!quizzes) return <h2>Loading...</h2>;
+  if (!quizzes) return <span class="loader"></span>;
 
   return (
     <div className='all-quizzes'>

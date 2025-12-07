@@ -18,8 +18,7 @@ function Quiz() {
       .catch((err) => console.log(err));
   }, [id]);
 
-  if (!quiz) return <h2>Loading ...</h2>;
-
+  if (!quiz) return <span className="loader"></span>;
   const q = quiz.questions[currentQuestion];
 
   const handleAnswerClick = (answerIndex) => {

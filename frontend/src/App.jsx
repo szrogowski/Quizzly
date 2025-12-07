@@ -6,7 +6,6 @@ import Register from '../components/Register'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Quiz from '../components/Quiz'
 import UserNavbar from '../components/UserNavbar'
-import QuizGroup from '../components/QuizGroup'
 import axios from 'axios';
 import { useState } from 'react'
 import Home from '../components/Home'
@@ -44,7 +43,7 @@ function App() {
       <Header user={user} setUser={setUser}/> 
     
        <Routes>
-          <Route path='/createquiz' element={<QuizCreator/>}/>
+          <Route path='/createquiz' element={<QuizCreator user={user}/>}/>
           <Route path='/' element={<Welcome/>}/>
           
           <Route path='/myaccount' element={<MyAccount user={user} error={error}/>}/>
